@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    overflow-x: hidden;
+    background-color: #faf6f0;
+    color: #3a2b28;
+    font-family: "Lato", system-ui, sans-serif;
+  }
+
+  /* Automatic Hindi Typography Optimization */
+  [data-lang="hi"] body,
+  [data-lang="hi"] {
+    font-family: "Noto Serif Devanagari", serif;
+  }
+
+  [data-lang="hi"] .font-serif,
+  [data-lang="hi"] .font-sans {
+    font-family: "Noto Serif Devanagari", serif;
+    line-height: 1.75;
+  }
+}
+
+/* Royal Watercolor Background Surface */
+.bg-watercolor-ivory {
+  background-color: #faf6f0;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(243, 220, 224, 0.55) 0%, transparent 45%),
+    radial-gradient(circle at 88% 15%, rgba(230, 207, 163, 0.38) 0%, transparent 42%),
+    radial-gradient(circle at 85% 85%, rgba(184, 196, 180, 0.32) 0%, transparent 48%),
+    radial-gradient(circle at 15% 82%, rgba(243, 220, 224, 0.4) 0%, transparent 45%);
+}
+
+.bg-watercolor-cream {
+  background-color: #f5efe6;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(230, 207, 163, 0.32) 0%, transparent 55%),
+    radial-gradient(circle at 10% 90%, rgba(243, 220, 224, 0.45) 0%, transparent 45%),
+    radial-gradient(circle at 90% 85%, rgba(184, 196, 180, 0.3) 0%, transparent 45%);
+}
+
+/* Shimmering Champagne Gold Text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #9f7e41 0%, #d4af63 45%, #8f6b2d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle Ornate Frame Border */
+.royal-double-border {
+  border: 1px solid rgba(201, 168, 106, 0.45);
+  box-shadow: inset 0 0 0 5px #faf6f0, inset 0 0 0 6px rgba(201, 168, 106, 0.3);
+}
+
+/* Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* Global Floating Petal Animations (Phase 4) */
+@keyframes petalFallSlow {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--petal-opacity, 0.55);
+  }
+  50% {
+    transform: translate3d(var(--petal-sway, 36px), 50vh, 0) rotate(170deg);
+  }
+  88% {
+    opacity: var(--petal-opacity, 0.55);
+  }
+  100% {
+    transform: translate3d(calc(var(--petal-sway, 36px) * -0.6), 110vh, 0) rotate(340deg);
+    opacity: 0;
+  }
+}
+
+.animate-petal-fall {
+  animation-name: petalFallSlow;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform, opacity;
+}
