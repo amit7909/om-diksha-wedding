@@ -158,16 +158,20 @@ export default function SplashScreen({ onOpen, language, setLanguage, t }) {
           {t.splash.blessing}
         </motion.p>
 
-        {/* Ornate Monogram Emblem */}
+        {/* Circular Ganesh Ji Photo Frame */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.7 }}
-          className="mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-champagne/60 bg-cream/80 shadow-gold"
+          className="mb-5 flex h-24 w-24 items-center justify-center rounded-full border-2 border-champagne/80 bg-cream/90 p-1 shadow-gold sm:h-28 sm:w-28"
         >
-          <span className="font-serif text-xl font-semibold tracking-widest text-burgundy">
-            {weddingData.couple.monogram}
-          </span>
+          <div className="h-full w-full overflow-hidden rounded-full border border-champagne/50 bg-ivory">
+            <img
+              src="/images/ganesh.jpg"
+              alt="Shri Ganesh Ji"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
         </motion.div>
 
         {/* Main Splash Copy */}

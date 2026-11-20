@@ -18,7 +18,13 @@ function HangingMarigoldToran() {
           height={length + 22}
           viewBox={`0 0 28 ${length + 22}`}
           className="origin-top shrink-0"
-          animate={{ rotate: [idx % 2 === 0 ? -1.4 : 1.4, idx % 2 === 0 ? 1.4 : -1.4, idx % 2 === 0 ? -1.4 : 1.4] }}
+          animate={{
+            rotate: [
+              idx % 2 === 0 ? -1.4 : 1.4,
+              idx % 2 === 0 ? 1.4 : -1.4,
+              idx % 2 === 0 ? -1.4 : 1.4,
+            ],
+          }}
           transition={{
             duration: 5 + (idx % 3),
             repeat: Infinity,
@@ -64,20 +70,39 @@ function HangingMarigoldToran() {
 function LotusDecoration({ className = "" }) {
   return (
     <svg viewBox="0 0 140 70" className={className} fill="none" aria-hidden="true">
-      {/* Outer Sage Leaves */}
       <path d="M70 62 C45 62, 22 50, 12 36 C28 38, 48 44, 70 62 Z" fill="#8A9A86" fillOpacity="0.45" />
       <path d="M70 62 C95 62, 118 50, 128 36 C112 38, 92 44, 70 62 Z" fill="#8A9A86" fillOpacity="0.45" />
-      {/* Outer Petals */}
       <path d="M70 60 C46 54, 30 38, 28 20 C44 26, 58 40, 70 60 Z" fill="#F3DCE0" stroke="#C9A86A" strokeWidth="0.8" />
       <path d="M70 60 C94 54, 110 38, 112 20 C96 26, 82 40, 70 60 Z" fill="#F3DCE0" stroke="#C9A86A" strokeWidth="0.8" />
-      {/* Inner Petals */}
       <path d="M70 60 C54 46, 48 26, 52 12 C62 24, 68 40, 70 60 Z" fill="#E8BDC5" stroke="#C9A86A" strokeWidth="0.8" />
       <path d="M70 60 C86 46, 92 26, 88 12 C78 24, 72 40, 70 60 Z" fill="#E8BDC5" stroke="#C9A86A" strokeWidth="0.8" />
-      {/* Center Petal */}
       <path d="M70 60 C60 40, 62 18, 70 6 C78 18, 80 40, 70 60 Z" fill="#F6E3E7" stroke="#C9A86A" strokeWidth="1" />
-      {/* Gold Stamen */}
       <circle cx="70" cy="48" r="3" fill="#C9A86A" />
     </svg>
+  );
+}
+
+// Smooth one-time letter-by-letter writing reveal (stays static after finishing)
+function WritingName({ text, startDelay = 0.6, letterDelay = 0.055 }) {
+  return (
+    <span aria-label={text}>
+      {text.split("").map((char, index) => (
+        <motion.span
+          key={`${char}-${index}`}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: startDelay + index * letterDelay,
+            duration: 0.22,
+            ease: "easeOut",
+          }}
+          className="inline-block"
+          aria-hidden="true"
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </span>
   );
 }
 
@@ -90,6 +115,11 @@ export default function Hero({ language, t }) {
     language === "hi"
       ? weddingData.venue.cityShortHi
       : weddingData.venue.cityShortEn;
+
+  const groomStartDelay = 0.6;
+  const letterSpeed = 0.055;
+  const ampersandDelay = groomStartDelay + weddingData.groom.fullName.length * letterSpeed + 0.1;
+  const brideStartDelay = ampersandDelay + 0.25;
 
   return (
     <section
@@ -137,14 +167,20 @@ export default function Hero({ language, t }) {
             aria-hidden="true"
           />
 
-          {/* Top Lotus Emblem */}
+          {/* Small Circular Ganesh Ji Photo Frame */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.7 }}
-            className="mx-auto mb-3 flex justify-center"
+            className="mx-auto mb-3.5 flex h-16 w-16 items-center justify-center rounded-full border-2 border-champagne/80 bg-cream/90 p-0.5 shadow-gold sm:h-20 sm:w-20"
           >
-            <LotusDecoration className="h-12 w-24 sm:h-14 sm:w-28" />
+            <div className="h-full w-full overflow-hidden rounded-full border border-champagne/50 bg-ivory">
+              <img
+                src="/images/ganesh.jpg"
+                alt="Shri Ganesh Ji"
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
           </motion.div>
 
           {/* Auspicious Mantra */}
@@ -178,29 +214,37 @@ export default function Hero({ language, t }) {
             {t.hero.invitationLine}
           </motion.p>
 
-          {/* Couple Names in Royal Typography */}
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.85 }}
-            className="my-7 sm:my-9"
-          >
+          {/* Couple Names with Writing Reveal Effect */}
+          <div className="my-7 sm:my-9">
             <h1 className="font-serif text-3xl font-semibold tracking-[0.08em] text-burgundy sm:text-5xl md:text-6xl">
-              {weddingData.groom.fullName}
+              <WritingName
+                text={weddingData.groom.fullName}
+                startDelay={groomStartDelay}
+                letterDelay={letterSpeed}
+              />
             </h1>
 
-            <div className="my-2 flex items-center justify-center gap-4 sm:my-3">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: ampersandDelay, duration: 0.4 }}
+              className="my-2 flex items-center justify-center gap-4 sm:my-3"
+            >
               <span className="h-[1px] w-12 bg-gradient-to-r from-transparent to-champagne sm:w-20" />
               <span className="font-script text-4xl text-champagne-dark sm:text-5xl">
                 &amp;
               </span>
               <span className="h-[1px] w-12 bg-gradient-to-l from-transparent to-champagne sm:w-20" />
-            </div>
+            </motion.div>
 
             <h2 className="font-serif text-3xl font-semibold tracking-[0.08em] text-burgundy sm:text-5xl md:text-6xl">
-              {weddingData.bride.fullName}
+              <WritingName
+                text={weddingData.bride.fullName}
+                startDelay={brideStartDelay}
+                letterDelay={letterSpeed}
+              />
             </h2>
-          </motion.div>
+          </div>
 
           {/* Date & Location Badges */}
           <motion.div

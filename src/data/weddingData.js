@@ -19,7 +19,7 @@ export const weddingData = {
   bride: {
     fullName: "DIKSHA DWIVEDI",
     firstName: "DIKSHA",
-    fatherName: "MR. TRYUGINARAYAN DWIVEDI",
+    fatherName: "MR. TRIYUGINARAYAN DWIVEDI",
     motherName: "MRS. PUSHPA DWIVEDI",
     // Replace null with an imported image or "/images/bride.jpg" when provided
     photo: "/images/bride.jpg",

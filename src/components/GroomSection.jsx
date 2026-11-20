@@ -2,77 +2,146 @@ import React from "react";
 import { motion } from "framer-motion";
 import { weddingData } from "../data/weddingData";
 
-function GroomSilhouettePlaceholder({ label }) {
+function GroomRoyalArchIllustration() {
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center bg-gradient-to-b from-cream via-ivory to-blush/40 p-6 text-center">
-      {/* Subtle Mandala Behind Portrait */}
+    <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-b from-[#FAF6F0] via-[#F6EFE4] to-[#EDE3D2]">
       <svg
-        viewBox="0 0 200 200"
-        className="pointer-events-none absolute h-52 w-52 text-champagne/20"
+        viewBox="0 0 300 400"
+        className="h-full w-full"
         fill="none"
-        aria-hidden="true"
+        role="img"
+        aria-label="Royal Indian palace arch illustration with OM monogram"
       >
-        <circle cx="100" cy="100" r="88" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-        <circle cx="100" cy="100" r="64" stroke="currentColor" strokeWidth="1" />
-      </svg>
+        <defs>
+          <linearGradient id="groomGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#E6CFA3" />
+            <stop offset="50%" stopColor="#C9A86A" />
+            <stop offset="100%" stopColor="#9F7E41" />
+          </linearGradient>
+          <radialGradient id="groomCenterGlow" cx="50%" cy="48%" r="48%">
+            <stop offset="0%" stopColor="#FAF6F0" stopOpacity="0.95" />
+            <stop offset="70%" stopColor="#F5EFE6" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#E6CFA3" stopOpacity="0.18" />
+          </radialGradient>
+        </defs>
 
-      {/* Illustrated Royal Groom Silhouette (Turban + Sherwani) */}
-      <svg
-        viewBox="0 0 180 220"
-        className="relative z-10 h-48 w-40 sm:h-56 sm:w-48"
-        fill="none"
-        aria-hidden="true"
-      >
-        {/* Pagdi / Royal Turban */}
+        {/* Soft Ivory-Beige Radial Aura */}
+        <rect x="0" y="0" width="300" height="400" fill="url(#groomCenterGlow)" />
+
+        {/* Subtle Palace Jali / Mandala Watermark */}
+        <g opacity="0.14" stroke="#9F7E41" strokeWidth="0.8">
+          <circle cx="150" cy="195" r="92" strokeDasharray="3 4" />
+          <circle cx="150" cy="195" r="70" />
+          <circle cx="150" cy="195" r="52" strokeDasharray="2 3" />
+        </g>
+
+        {/* Outer Royal Palace Cusped Arch (Rajasthani Jharokha) */}
         <path
-          d="M62 56 C62 34, 118 34, 118 56 C122 64, 116 74, 90 74 C64 74, 58 64, 62 56 Z"
-          fill="#7A2E3A"
+          d="M28 372 L28 148
+             C28 118, 42 104, 58 98
+             C56 80, 72 68, 92 68
+             C98 52, 118 44, 134 46
+             C140 34, 146 28, 150 24
+             C154 28, 160 34, 166 46
+             C182 44, 202 52, 208 68
+             C228 68, 244 80, 242 98
+             C258 104, 272 118, 272 148
+             L272 372 Z"
+          fill="#FAF6F0"
+          fillOpacity="0.58"
+          stroke="url(#groomGoldGrad)"
+          strokeWidth="1.8"
         />
-        <path
-          d="M68 48 Q90 36 112 48"
-          stroke="#E6CFA3"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-        />
-        {/* Kalgi (Turban Feather Brooch) */}
-        <path d="M106 42 C116 24, 126 26, 122 40 C118 44, 110 46, 106 42 Z" fill="#C9A86A" />
-        <circle cx="106" cy="43" r="3.5" fill="#FAF6F0" stroke="#C9A86A" strokeWidth="1.2" />
 
-        {/* Head & Neck */}
-        <ellipse cx="90" cy="84" rx="22" ry="26" fill="#E6CFA3" fillOpacity="0.45" stroke="#C9A86A" strokeWidth="1.2" />
-        <rect x="82" y="106" width="16" height="14" rx="4" fill="#E6CFA3" fillOpacity="0.4" />
-
-        {/* Royal Sherwani & Stole */}
+        {/* Inner Delicate Gold Filigree Arch */}
         <path
-          d="M42 198 C44 146, 62 122, 90 122 C118 122, 136 146, 138 198 Z"
-          fill="#F5EFE6"
+          d="M38 362 L38 152
+             C38 126, 50 114, 65 108
+             C64 92, 78 81, 96 81
+             C102 66, 120 58, 136 60
+             C141 49, 147 43, 150 40
+             C153 43, 159 49, 164 60
+             C180 58, 198 66, 204 81
+             C222 81, 236 92, 235 108
+             C250 114, 262 126, 262 152
+             L262 362 Z"
           stroke="#C9A86A"
-          strokeWidth="1.5"
-        />
-        {/* Sherwani Center Placket */}
-        <line x1="90" y1="122" x2="90" y2="198" stroke="#C9A86A" strokeWidth="1.5" />
-        {[136, 148, 160, 172].map((y) => (
-          <circle key={y} cx="90" cy={y} r="2" fill="#9F7E41" />
-        ))}
-        {/* Burgundy Royal Dupatta / Stole */}
-        <path
-          d="M66 124 C74 152, 86 172, 124 196"
-          stroke="#7A2E3A"
-          strokeWidth="7"
-          strokeLinecap="round"
-          strokeOpacity="0.85"
-        />
-        <path
-          d="M66 124 C74 152, 86 172, 124 196"
-          stroke="#E6CFA3"
-          strokeWidth="1.2"
+          strokeWidth="0.9"
           strokeDasharray="3 3"
+          opacity="0.85"
         />
-      </svg>
 
-      <span className="relative z-10 mt-3 rounded-full border border-champagne/40 bg-ivory/90 px-4 py-1 text-xs font-medium tracking-widest text-champagne-dark uppercase">
-        {label}
-      </span>
+        {/* Crown Kalash / Dome Finial at Top */}
+        <path d="M150 14 L154 22 L150 26 L146 22 Z" fill="#C9A86A" />
+        <circle cx="150" cy="11" r="2.2" fill="#9F7E41" />
+
+        {/* Architectural Pillars (Left & Right) */}
+        <rect x="24" y="150" width="8" height="222" rx="2" fill="#E6CFA3" fillOpacity="0.45" stroke="#C9A86A" strokeWidth="0.8" />
+        <rect x="268" y="150" width="8" height="222" rx="2" fill="#E6CFA3" fillOpacity="0.45" stroke="#C9A86A" strokeWidth="0.8" />
+        {/* Pillar Capitals */}
+        <rect x="21" y="146" width="14" height="6" rx="2" fill="#C9A86A" fillOpacity="0.7" />
+        <rect x="265" y="146" width="14" height="6" rx="2" fill="#C9A86A" fillOpacity="0.7" />
+
+        {/* Subtle Floral Corner Motifs (Top Spandrels) */}
+        <g opacity="0.75">
+          <circle cx="62" cy="56" r="10" fill="#F3DCE0" fillOpacity="0.7" />
+          <circle cx="62" cy="56" r="3" fill="#C9A86A" />
+          <path d="M52 64 C44 70, 42 78, 48 82 C54 78, 56 70, 52 64 Z" fill="#8A9A86" fillOpacity="0.55" />
+
+          <circle cx="238" cy="56" r="10" fill="#F3DCE0" fillOpacity="0.7" />
+          <circle cx="238" cy="56" r="3" fill="#C9A86A" />
+          <path d="M248 64 C256 70, 258 78, 252 82 C246 78, 244 70, 248 64 Z" fill="#8A9A86" fillOpacity="0.55" />
+        </g>
+
+        {/* Central Royal Monogram Medallion */}
+        <g>
+          {/* Rotating Outer Gold Ring & Diamonds */}
+          <g>
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 150 196"
+              to="360 150 196"
+              dur="18s"
+              repeatCount="indefinite"
+            />
+            <circle cx="150" cy="196" r="56" fill="#FAF6F0" fillOpacity="0.92" stroke="url(#groomGoldGrad)" strokeWidth="1.6" />
+            <circle cx="150" cy="196" r="49" stroke="#C9A86A" strokeWidth="0.8" strokeDasharray="2 3" />
+            {/* Top, Bottom, Left & Right Medallion Diamonds */}
+            <path d="M150 135 L154 140 L150 145 L146 140 Z" fill="#C9A86A" />
+            <path d="M150 247 L154 252 L150 257 L146 252 Z" fill="#C9A86A" />
+            <path d="M89 196 L94 192 L99 196 L94 200 Z" fill="#C9A86A" />
+            <path d="M201 196 L206 192 L211 196 L206 200 Z" fill="#C9A86A" />
+          </g>
+
+          {/* Subtle "OM" Serif Monogram */}
+          <text
+            x="150"
+            y="209"
+            textAnchor="middle"
+            fill="#7A2E3A"
+            fontFamily="'Cormorant Garamond', Georgia, serif"
+            fontSize="40"
+            fontWeight="600"
+            letterSpacing="4"
+          >
+            OM
+          </text>
+        </g>
+
+        {/* Lower Ornamental Lotus & Jharokha Sill */}
+        <g opacity="0.85">
+          <path d="M150 338 C134 334, 124 324, 122 312 C134 316, 142 325, 150 338 Z" fill="#F3DCE0" stroke="#C9A86A" strokeWidth="0.8" />
+          <path d="M150 338 C166 334, 176 324, 178 312 C166 316, 158 325, 150 338 Z" fill="#F3DCE0" stroke="#C9A86A" strokeWidth="0.8" />
+          <path d="M150 338 C142 324, 144 310, 150 302 C156 310, 158 324, 150 338 Z" fill="#E8BDC5" stroke="#C9A86A" strokeWidth="0.9" />
+          <path d="M150 338 C130 340, 114 334, 106 326 C118 327, 134 331, 150 338 Z" fill="#8A9A86" fillOpacity="0.45" />
+          <path d="M150 338 C170 340, 186 334, 194 326 C182 327, 166 331, 150 338 Z" fill="#8A9A86" fillOpacity="0.45" />
+        </g>
+
+        {/* Palace Base Sill */}
+        <line x1="20" y1="372" x2="280" y2="372" stroke="url(#groomGoldGrad)" strokeWidth="2" />
+        <line x1="36" y1="378" x2="264" y2="378" stroke="#C9A86A" strokeWidth="0.9" opacity="0.7" />
+      </svg>
     </div>
   );
 }
@@ -85,7 +154,7 @@ export default function GroomSection({ language, t }) {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-14">
-          {/* Groom Portrait Frame */}
+          {/* Groom Royal Illustration Frame */}
           <motion.div
             initial={{ opacity: 0, x: -32 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -100,15 +169,7 @@ export default function GroomSection({ language, t }) {
                 aria-hidden="true"
               />
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-t-[170px] rounded-b-2xl border-2 border-champagne/70 bg-ivory shadow-royal">
-                {weddingData.groom.photo ? (
-                  <img
-                    src={weddingData.groom.photo}
-                    alt={weddingData.groom.fullName}
-                    className="h-full w-full object-cover object-top"
-                  />
-                ) : (
-                  <GroomSilhouettePlaceholder label={t.groom.photoPlaceholder} />
-                )}
+                <GroomRoyalArchIllustration />
               </div>
 
               {/* Bottom Gold Ornamental Medallion */}

@@ -2,63 +2,152 @@ import React from "react";
 import { motion } from "framer-motion";
 import { weddingData } from "../data/weddingData";
 
-function BrideSilhouettePlaceholder({ label }) {
+function BrideRoyalJharokhaIllustration() {
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center bg-gradient-to-b from-blush-light via-ivory to-cream p-6 text-center">
-      {/* Subtle Floral Ring */}
+    <div className="relative flex h-full w-full items-center justify-center bg-gradient-to-b from-[#FAF6F0] via-[#F7EFE6] to-[#EFE4D5]">
       <svg
-        viewBox="0 0 200 200"
-        className="pointer-events-none absolute h-52 w-52 text-champagne/25"
+        viewBox="0 0 300 400"
+        className="h-full w-full"
         fill="none"
-        aria-hidden="true"
+        role="img"
+        aria-label="Royal Indian floral Jharokha illustration with D monogram"
       >
-        <circle cx="100" cy="100" r="88" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-        <circle cx="100" cy="100" r="64" stroke="currentColor" strokeWidth="1" />
-      </svg>
+        <defs>
+          <linearGradient id="brideGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#E6CFA3" />
+            <stop offset="50%" stopColor="#C9A86A" />
+            <stop offset="100%" stopColor="#9F7E41" />
+          </linearGradient>
+          <radialGradient id="brideCenterGlow" cx="50%" cy="48%" r="48%">
+            <stop offset="0%" stopColor="#FAF6F0" stopOpacity="0.96" />
+            <stop offset="70%" stopColor="#F6ECEE" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="#E6CFA3" stopOpacity="0.18" />
+          </radialGradient>
+        </defs>
 
-      {/* Illustrated Royal Bride Silhouette (Veil + Lehenga + Maang Tikka) */}
-      <svg
-        viewBox="0 0 180 220"
-        className="relative z-10 h-48 w-40 sm:h-56 sm:w-48"
-        fill="none"
-        aria-hidden="true"
-      >
-        {/* Bridal Dupatta / Veil */}
+        {/* Soft Ivory-Beige Radial Aura */}
+        <rect x="0" y="0" width="300" height="400" fill="url(#brideCenterGlow)" />
+
+        {/* Subtle Floral Mandala Watermark */}
+        <g opacity="0.14" stroke="#9F7E41" strokeWidth="0.8">
+          <circle cx="150" cy="195" r="92" strokeDasharray="3 4" />
+          <circle cx="150" cy="195" r="70" />
+          <circle cx="150" cy="195" r="52" strokeDasharray="2 3" />
+        </g>
+
+        {/* Matching Royal Rajasthani Jharokha Arch */}
         <path
-          d="M90 36 C56 38, 44 76, 40 132 C46 136, 54 136, 62 130 L66 78 C72 60, 108 60, 114 78 L118 130 C126 136, 134 136, 140 132 C136 76, 124 38, 90 36 Z"
-          fill="#9A4A57"
-          fillOpacity="0.88"
+          d="M28 372 L28 148
+             C28 118, 42 104, 58 98
+             C56 80, 72 68, 92 68
+             C98 52, 118 44, 134 46
+             C140 34, 146 28, 150 24
+             C154 28, 160 34, 166 46
+             C182 44, 202 52, 208 68
+             C228 68, 244 80, 242 98
+             C258 104, 272 118, 272 148
+             L272 372 Z"
+          fill="#FAF6F0"
+          fillOpacity="0.6"
+          stroke="url(#brideGoldGrad)"
+          strokeWidth="1.8"
         />
+
+        {/* Inner Delicate Gold Filigree Arch */}
         <path
-          d="M54 58 Q90 32 126 58"
-          stroke="#E6CFA3"
-          strokeWidth="2"
-          strokeDasharray="3 2"
-        />
-
-        {/* Head & Maang Tikka */}
-        <ellipse cx="90" cy="82" rx="21" ry="25" fill="#FAF6F0" stroke="#C9A86A" strokeWidth="1.2" />
-        <line x1="90" y1="54" x2="90" y2="66" stroke="#C9A86A" strokeWidth="1.4" />
-        <circle cx="90" cy="68" r="3" fill="#C9A86A" />
-
-        {/* Necklace */}
-        <path d="M76 112 Q90 124 104 112" stroke="#C9A86A" strokeWidth="2.4" strokeLinecap="round" />
-
-        {/* Royal Bridal Lehenga */}
-        <path
-          d="M58 124 C68 118, 112 118, 122 124 L144 198 L36 198 Z"
-          fill="#7A2E3A"
+          d="M38 362 L38 152
+             C38 126, 50 114, 65 108
+             C64 92, 78 81, 96 81
+             C102 66, 120 58, 136 60
+             C141 49, 147 43, 150 40
+             C153 43, 159 49, 164 60
+             C180 58, 198 66, 204 81
+             C222 81, 236 92, 235 108
+             C250 114, 262 126, 262 152
+             L262 362 Z"
           stroke="#C9A86A"
-          strokeWidth="1.4"
+          strokeWidth="0.9"
+          strokeDasharray="3 3"
+          opacity="0.85"
         />
-        {/* Gold Lehenga Embroidery Border */}
-        <path d="M40 186 L140 186" stroke="#E6CFA3" strokeWidth="2.5" strokeDasharray="5 3" />
-        <path d="M64 138 Q90 152 116 138" stroke="#E6CFA3" strokeWidth="1.4" />
-      </svg>
 
-      <span className="relative z-10 mt-3 rounded-full border border-champagne/40 bg-ivory/90 px-4 py-1 text-xs font-medium tracking-widest text-champagne-dark uppercase">
-        {label}
-      </span>
+        {/* Crown Lotus Finial at Top */}
+        <path d="M150 14 L154 22 L150 26 L146 22 Z" fill="#C9A86A" />
+        <circle cx="150" cy="11" r="2.2" fill="#9F7E41" />
+
+        {/* Architectural Pillars (Left & Right) */}
+        <rect x="24" y="150" width="8" height="222" rx="2" fill="#E6CFA3" fillOpacity="0.45" stroke="#C9A86A" strokeWidth="0.8" />
+        <rect x="268" y="150" width="8" height="222" rx="2" fill="#E6CFA3" fillOpacity="0.45" stroke="#C9A86A" strokeWidth="0.8" />
+        <rect x="21" y="146" width="14" height="6" rx="2" fill="#C9A86A" fillOpacity="0.7" />
+        <rect x="265" y="146" width="14" height="6" rx="2" fill="#C9A86A" fillOpacity="0.7" />
+
+        {/* Delicate Floral Jharokha Garlands (Top Spandrels & Arch Sides) */}
+        <g opacity="0.85">
+          {/* Left Blossom Cluster */}
+          <circle cx="62" cy="56" r="11" fill="#F3DCE0" fillOpacity="0.85" />
+          <circle cx="74" cy="48" r="6" fill="#E8BDC5" fillOpacity="0.7" />
+          <circle cx="62" cy="56" r="3" fill="#C9A86A" />
+          <path d="M52 64 C42 70, 40 80, 48 84 C54 78, 56 70, 52 64 Z" fill="#8A9A86" fillOpacity="0.55" />
+
+          {/* Right Blossom Cluster */}
+          <circle cx="238" cy="56" r="11" fill="#F3DCE0" fillOpacity="0.85" />
+          <circle cx="226" cy="48" r="6" fill="#E8BDC5" fillOpacity="0.7" />
+          <circle cx="238" cy="56" r="3" fill="#C9A86A" />
+          <path d="M248 64 C258 70, 260 80, 252 84 C246 78, 244 70, 248 64 Z" fill="#8A9A86" fillOpacity="0.55" />
+
+          {/* Delicate Side Vine Accents */}
+          <circle cx="48" cy="196" r="4" fill="#F3DCE0" stroke="#C9A86A" strokeWidth="0.7" />
+          <circle cx="252" cy="196" r="4" fill="#F3DCE0" stroke="#C9A86A" strokeWidth="0.7" />
+        </g>
+
+        {/* Central Royal Monogram Medallion (Matching Proportions) */}
+        <g>
+          {/* Rotating Outer Gold Ring & Diamonds */}
+          <g>
+            <animateTransform
+              attributeName="transform"
+              type="rotate"
+              from="0 150 196"
+              to="360 150 196"
+              dur="18s"
+              repeatCount="indefinite"
+            />
+            <circle cx="150" cy="196" r="56" fill="#FAF6F0" fillOpacity="0.92" stroke="url(#brideGoldGrad)" strokeWidth="1.6" />
+            <circle cx="150" cy="196" r="49" stroke="#C9A86A" strokeWidth="0.8" strokeDasharray="2 3" />
+            {/* Top, Bottom, Left & Right Medallion Diamonds */}
+            <path d="M150 135 L154 140 L150 145 L146 140 Z" fill="#C9A86A" />
+            <path d="M150 247 L154 252 L150 257 L146 252 Z" fill="#C9A86A" />
+            <path d="M89 196 L94 192 L99 196 L94 200 Z" fill="#C9A86A" />
+            <path d="M201 196 L206 192 L211 196 L206 200 Z" fill="#C9A86A" />
+          </g>
+
+          {/* Subtle "D" Serif Monogram */}
+          <text
+            x="150"
+            y="210"
+            textAnchor="middle"
+            fill="#7A2E3A"
+            fontFamily="'Cormorant Garamond', Georgia, serif"
+            fontSize="44"
+            fontWeight="600"
+          >
+            D
+          </text>
+        </g>
+
+        {/* Lower Ornamental Lotus & Floral Sill */}
+        <g opacity="0.88">
+          <path d="M150 338 C134 334, 124 324, 122 312 C134 316, 142 325, 150 338 Z" fill="#F3DCE0" stroke="#C9A86A" strokeWidth="0.8" />
+          <path d="M150 338 C166 334, 176 324, 178 312 C166 316, 158 325, 150 338 Z" fill="#F3DCE0" stroke="#C9A86A" strokeWidth="0.8" />
+          <path d="M150 338 C142 324, 144 310, 150 302 C156 310, 158 324, 150 338 Z" fill="#E8BDC5" stroke="#C9A86A" strokeWidth="0.9" />
+          <path d="M150 338 C130 340, 114 334, 106 326 C118 327, 134 331, 150 338 Z" fill="#8A9A86" fillOpacity="0.48" />
+          <path d="M150 338 C170 340, 186 334, 194 326 C182 327, 166 331, 150 338 Z" fill="#8A9A86" fillOpacity="0.48" />
+        </g>
+
+        {/* Jharokha Base Sill */}
+        <line x1="20" y1="372" x2="280" y2="372" stroke="url(#brideGoldGrad)" strokeWidth="2" />
+        <line x1="36" y1="378" x2="264" y2="378" stroke="#C9A86A" strokeWidth="0.9" opacity="0.7" />
+      </svg>
     </div>
   );
 }
@@ -146,7 +235,7 @@ export default function BrideSection({ language, t }) {
             </p>
           </motion.div>
 
-          {/* Bride Portrait Frame (Right on Desktop, First on Mobile) */}
+          {/* Bride Royal Illustration Frame (Right on Desktop, First on Mobile) */}
           <motion.div
             initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -165,15 +254,7 @@ export default function BrideSection({ language, t }) {
                 aria-hidden="true"
               />
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-t-[170px] rounded-b-2xl border-2 border-champagne/70 bg-ivory shadow-royal">
-                {weddingData.bride.photo ? (
-                  <img
-                    src={weddingData.bride.photo}
-                    alt={weddingData.bride.fullName}
-                    className="h-full w-full object-cover object-top"
-                  />
-                ) : (
-                  <BrideSilhouettePlaceholder label={t.bride.photoPlaceholder} />
-                )}
+                <BrideRoyalJharokhaIllustration />
               </div>
 
               {/* Bottom Gold Ornamental Medallion */}

@@ -25,6 +25,46 @@ export default function App() {
 
   const audioRef = useRef(null);
   const t = translations[language];
+  const wasPlayingBeforeHideRef = useRef(false);
+
+  // Pause music immediately when user leaves the tab, minimizes browser, or locks phone
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const audio = audioRef.current;
+      if (!audio) return;
+
+      if (document.hidden) {
+        if (!audio.paused) {
+          wasPlayingBeforeHideRef.current = true;
+          audio.pause();
+          setIsMusicPlaying(false);
+        } else {
+          wasPlayingBeforeHideRef.current = false;
+        }
+      } else if (wasPlayingBeforeHideRef.current && isInvitationOpen && !hasAudioError) {
+        audio
+          .play()
+          .then(() => setIsMusicPlaying(true))
+          .catch(() => setIsMusicPlaying(false));
+      }
+    };
+
+    const handlePageHide = () => {
+      const audio = audioRef.current;
+      if (audio && !audio.paused) {
+        audio.pause();
+        setIsMusicPlaying(false);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("pagehide", handlePageHide);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("pagehide", handlePageHide);
+    };
+  }, [isInvitationOpen, hasAudioError]);
 
   // Sync HTML lang attribute & Devanagari font styling
   useEffect(() => {
