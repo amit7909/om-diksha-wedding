@@ -27,6 +27,66 @@ export default function App() {
   const t = translations[language];
   const wasPlayingBeforeHideRef = useRef(false);
 
+  // Gentle Auto-Scroll after Invitation Opens (Stops instantly if user scrolls/touches)
+  useEffect(() => {
+    if (!isInvitationOpen) return;
+
+    // Respect user's reduced-motion setting
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let animationFrameId = null;
+    let isStopped = false;
+    let currentY = window.scrollY;
+    const scrollSpeed = 0.65; // 0.5 = aur slow, 1.0 = thoda fast
+
+    const stopAutoScroll = () => {
+      isStopped = true;
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+
+    const step = () => {
+      if (isStopped) return;
+
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      if (currentY >= maxScroll - 2) {
+        stopAutoScroll();
+        return;
+      }
+
+      currentY += scrollSpeed;
+      // "instant" prevents conflict with CSS scroll-smooth
+      window.scrollTo({ top: currentY, behavior: "instant" });
+      animationFrameId = requestAnimationFrame(step);
+    };
+
+    // Start auto-scroll 3 seconds after opening so Hero animation finishes first
+    const startTimer = setTimeout(() => {
+      if (!isStopped) {
+        currentY = window.scrollY;
+        animationFrameId = requestAnimationFrame(step);
+      }
+    }, 3000);
+
+    // Stop immediately on any manual user interaction
+    window.addEventListener("wheel", stopAutoScroll, { passive: true });
+    window.addEventListener("touchstart", stopAutoScroll, { passive: true });
+    window.addEventListener("mousedown", stopAutoScroll, { passive: true });
+    window.addEventListener("keydown", stopAutoScroll);
+
+    return () => {
+      clearTimeout(startTimer);
+      stopAutoScroll();
+      window.removeEventListener("wheel", stopAutoScroll);
+      window.removeEventListener("touchstart", stopAutoScroll);
+      window.removeEventListener("mousedown", stopAutoScroll);
+      window.removeEventListener("keydown", stopAutoScroll);
+    };
+  }, [isInvitationOpen]);
+
   // Pause music immediately when user leaves the tab, minimizes browser, or locks phone
   useEffect(() => {
     const handleVisibilityChange = () => {
