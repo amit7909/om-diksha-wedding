@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Heart, Sparkles } from "lucide-react";
+import { Heart, Sparkles, Phone, MessageCircle } from "lucide-react";
 import { weddingData } from "../data/weddingData";
 
 function FooterFloralDivider() {
@@ -196,6 +196,43 @@ export default function Footer({ language }) {
             )}
           </AnimatePresence>
         </motion.div>
+      </div>
+      {/* Subtle Developer / Invitation Inquiry Line */}
+      <div className="mt-6 flex flex-col items-center justify-center gap-1.5 px-4 text-xs text-royal-ink/65 sm:flex-row sm:gap-2.5">
+        <span className={language === "hi" ? "font-hindi" : "font-sans"}>
+          {language === "hi"
+            ? "ऐसी ही डिजिटल निमंत्रण वेबसाइट बनवाने के लिए संपर्क करें:"
+            : "Want a similar wedding invitation website? Contact:"}
+        </span>
+
+        <div className="inline-flex items-center gap-2 font-medium text-royal-ink/80">
+          <a
+            href="tel:+918982756446"
+            title="Call"
+            aria-label="Call +91 89827 56446"
+            className="inline-flex items-center text-champagne-dark transition-colors hover:text-burgundy"
+          >
+            <Phone className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+
+          <a
+            href="https://wa.me/918982756446"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="WhatsApp"
+            aria-label="WhatsApp +91 89827 56446"
+            className="inline-flex items-center text-sage-dark transition-colors hover:text-burgundy"
+          >
+            <MessageCircle className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+
+          <a
+            href="tel:+918982756446"
+            className="tracking-wide transition-colors hover:text-burgundy"
+          >
+            +91 89827 56446
+          </a>
+        </div>
       </div>
     </footer>
   );
